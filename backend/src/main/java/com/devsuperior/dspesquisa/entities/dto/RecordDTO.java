@@ -3,26 +3,44 @@ package com.devsuperior.dspesquisa.entities.dto;
 import java.io.Serializable;
 import java.time.Instant;
 
+import com.devsuperior.dspesquisa.entities.Record;
+import com.devsuperior.dspesquisa.entities.enums.Platform;
+
 public class RecordDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	private Long id;
+	private Instant moment;
 	private String name;
 	private Integer age;
-	private Instant moment;
-
-	private GameDTO game;
-
+	private String gameTitle;
+	private Platform gamePlatform;
+	private String genreGame;
+	
 	public RecordDTO() {
 	}
+	
+	public RecordDTO(Record entity) {
+		id = entity.getId();
+		moment = entity.getMoment();
+		name = entity.getName();
+		age = entity.getAge();
+		gameTitle = entity.getGame().getTitle();
+		gamePlatform = entity.getGame().getPlataform();
+		genreGame = entity.getGame().getGenre().getName();
+		
+	}
 
-	public RecordDTO(Long id, String name, Integer age, Instant moment, GameDTO game) {
+	public RecordDTO(Long id, Instant moment, String name, Integer age, String gameTitle, Platform gamePlatform,
+			String genreGame) {
 		this.id = id;
+		this.moment = moment;
 		this.name = name;
 		this.age = age;
-		this.moment = moment;
-		this.game = game;
+		this.gameTitle = gameTitle;
+		this.gamePlatform = gamePlatform;
+		this.genreGame = genreGame;
 	}
 
 	public Long getId() {
@@ -31,6 +49,14 @@ public class RecordDTO implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Instant getMoment() {
+		return moment;
+	}
+
+	public void setMoment(Instant moment) {
+		this.moment = moment;
 	}
 
 	public String getName() {
@@ -49,20 +75,32 @@ public class RecordDTO implements Serializable {
 		this.age = age;
 	}
 
-	public Instant getMoment() {
-		return moment;
+	public String getGameTitle() {
+		return gameTitle;
 	}
 
-	public void setMoment(Instant moment) {
-		this.moment = moment;
+	public void setGameTitle(String gameTitle) {
+		this.gameTitle = gameTitle;
 	}
 
-	public GameDTO getGameDTO() {
-		return game;
+	public Platform getGamePlatform() {
+		return gamePlatform;
 	}
 
-	public void setGameDTO(GameDTO game) {
-		this.game = game;
+	public void setGamePlatform(Platform gamePlatform) {
+		this.gamePlatform = gamePlatform;
 	}
+
+	public String getGenreGame() {
+		return genreGame;
+	}
+
+	public void setGenreGame(String genreGame) {
+		this.genreGame = genreGame;
+	}
+	
+	
+	
+	
 
 }
