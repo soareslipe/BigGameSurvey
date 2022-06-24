@@ -27,7 +27,7 @@ public class RecordService {
 	@Transactional
 	public RecordDTO insert(RecordInsertDTO dto) {
 		Record entity = new Record();
-		Game game = gameRepository.getReferenceById(dto.getGameId());
+		Game game = gameRepository.getOne(dto.getGameId());
 		entity.setName(dto.getName());
 		entity.setAge(dto.getAge());
 		entity.setMoment(Instant.now());
